@@ -1,14 +1,14 @@
 import './App.css';
 import {useEffect, useState} from 'react';
 
-// http://localhost:5212/WeatherForecast
+// http://localhost:5212/api/WeatherForecast
 
 function App() {
   const [state, setState] = useState([]);
 
   useEffect(() =>
   {
-    fetch('/WeatherForecast')
+    fetch('/api/WeatherForecast')
     .then(data =>{
       data
       .json()

@@ -113,21 +113,47 @@ And the YAML file is
 
 ```YAML
 apiVersion: v1
+
 kind: Pod
+
 metadata:
-  creationTimestamp: null
   labels:
-    run: api
-  name: api
+    run: nginx
+  name: nginx
+
 spec:
   containers:
-  - args:
-    - client
-    image: k8s-demo-api:v1
-    name: api
-    resources: {}
+    image: nginx
+    name: nginx
+
+    resources: 
+      requests:
+        memory: "64Mi"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+    args:
+    - /bin/sh
+    - -c
+    - touch /tmp/healthy; sleep 30; rm -f /tmp/healthy; sleep 600
+
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
+
   dnsPolicy: ClusterFirst
+
   restartPolicy: Always
+
+  tolerations:
+  - key: "example-key"
+    operator: "Exists"
+    effect: "NoSchedule"
 ```
 
 Apply from files:
@@ -135,4 +161,34 @@ Apply from files:
 ```bash
 kubectl apply -f ./yamls/api.yaml
 kubectl delete -f ./yamls/api.yaml
+```
+
+### Scale up vs Scale out
+
+```bash
+kubectl apply -f ./yamls/deployment-api.yaml 
+kubectl apply -f ./yamls/deployment-client.yaml 
+
+# Edit or scale
+kubectl scale --replicas=1 deployment/client-deployment
+```
+
+### Service
+
+```bash
+kubectl apply -f ./yamls/service-api.yaml 
+kubectl apply -f ./yamls/service-client.yaml 
+
+kubectl exec the-nginx -- curl http://api-service.default.svc.cluster.local/WeatherForecast
+```
+
+### Ingress
+
+First install controller.
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.6.4/deploy/static/provider/cloud/deploy.yaml
+
+# Then create the ingress
+kubectl apply -f ./yamls/ingress.yaml
 ```

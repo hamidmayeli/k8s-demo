@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: api
-        image: k8s-demo-api
+        image: k8s-demo-api:v1
         ports:
         - containerPort: 80

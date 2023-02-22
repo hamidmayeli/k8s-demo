@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: client
-        image: k8s-demo-client
+        image: k8s-demo-client:v1
         ports:
         - containerPort: 80
