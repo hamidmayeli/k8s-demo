@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client
+
+spec:
+  containers:
+  - name: client
+    image: k8s-demo-client
+    ports:
+    - containerPort: 80
