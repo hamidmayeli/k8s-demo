@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <h1>
-        The K8s Demo Client
+        The K8s Demo Client - v2
       </h1>
       <p>
         <ul>

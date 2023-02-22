@@ -21,6 +21,8 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
+        // int.TryParse(Environment.GetEnvironmentVariable("DAYS_IN_FUTURE") ?? "3", out var count);
+        // return Enumerable.Range(1, count).Select(index => new WeatherForecast
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

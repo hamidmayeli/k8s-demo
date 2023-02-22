@@ -192,3 +192,37 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 # Then create the ingress
 kubectl apply -f ./yamls/ingress.yaml
 ```
+
+### Let's upgrade
+
+First build the v2 of the API.
+
+```bash
+kubectl set image deployment/api-deployment api=k8s-demo-api:v2
+```
+
+### Config the environment 
+
+```bash
+kubectl create configmap api-config --from-literal=ANY_NAME=7
+kubectl rollout restart deployment/api-deployment
+```
+
+Add the following to yaml
+```bash
+        env:
+          - name: DAYS_IN_FUTURE
+            valueFrom:
+              configMapKeyRef:
+                name: api-config
+                key: ANY_NAME
+```
+
+> Let experiment changing a config and killing only one pod!
+
+### Watch out
+
+```bash
+kubectl run the-random-pod --image k8s-demo-client:v2 
+kubectl label pod the-random-pod app=client
+```
