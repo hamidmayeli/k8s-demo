@@ -98,7 +98,7 @@ kubectl run the-nginx --image nginx
 
 kubectl get pod -o wide
 
-kubectl exec the-nginx -- curl http://10.1.0.13/WeatherForecast
+kubectl exec the-nginx -- curl http://10.1.0.13/api/WeatherForecast
 ```
 
 ### YAML Fils
