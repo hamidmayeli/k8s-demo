@@ -179,7 +179,7 @@ kubectl scale --replicas=1 deployment/client-deployment
 kubectl apply -f ./yamls/service-api.yaml 
 kubectl apply -f ./yamls/service-client.yaml 
 
-kubectl exec the-nginx -- curl http://api-service.default.svc.cluster.local/WeatherForecast
+kubectl exec the-nginx -- curl http://api-service.default.svc.cluster.local/api/WeatherForecast
 ```
 
 ### Ingress
