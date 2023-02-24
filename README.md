@@ -123,7 +123,7 @@ metadata:
 
 spec:
   containers:
-    image: nginx
+  - image: nginx
     name: nginx
 
     resources: 
