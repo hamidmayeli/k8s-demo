@@ -10,7 +10,7 @@ But what does that mean? As a non native English speaker, I did understand the a
 
 The first concept we need to know is the cluster. A cluster is a set of nodes, that run containerized applications.
 
-![Cluster Image](./imgs/components-of-kubernetes.svg)
+![Cluster Image](./imgs/cluster.svg)
 
 As you can see in this image there are a few other concepts which is out of the scope of this demo. However, it is nice to mention their names.
 
@@ -184,7 +184,7 @@ kubectl exec the-nginx -- curl http://api-service.default.svc.cluster.local/api/
 
 ### Ingress
 
-First install controller.
+First install [controller](https://kubernetes.github.io/ingress-nginx/deploy/).
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.6.4/deploy/static/provider/cloud/deploy.yaml

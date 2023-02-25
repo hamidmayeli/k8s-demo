@@ -11,8 +11,8 @@ spec:
   #     kind: StorageBucket
   #     name: static-assets
   rules:
+  # - host: my-localhost.com
   - http:
-  #  host: my-localhost.com
       paths:
       - path: /api
         pathType: Prefix
