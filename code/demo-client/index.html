@@ -1,0 +1,36 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Client App</title>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root">
+            <div class="App">
+                <!-- <h1>The K8s Demo Client</h1> -->
+                <h1>The K8s Demo Client - V2</h1>
+                <p>
+                    <ul id="the-ul">
+
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <script>
+            fetch('http://localhost/api/WeatherForecast')
+                .then(data =>{
+                    data.json()
+                    .then(json =>{
+                        console.log({json});
+                        json.map(item =>{
+                            var li = document.createElement("LI");
+                            li.append(item.date + " " + item.temperatureC + " (" + item.summary + ")");
+
+                            document.getElementById("the-ul")
+                                .appendChild(li);
+                        });
+                    });
+                });
+        </script>
+    </body>
+</html>
