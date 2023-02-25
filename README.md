@@ -175,6 +175,8 @@ kubectl scale --replicas=1 deployment/client-deployment
 
 ### Service
 
+![API Service Image](./imgs/api-service.svg)
+
 ```bash
 kubectl apply -f ./yamls/service-api.yaml 
 kubectl apply -f ./yamls/service-client.yaml 
@@ -183,6 +185,8 @@ kubectl exec the-nginx -- curl http://api-service.default.svc.cluster.local/api/
 ```
 
 ### Ingress
+
+![Ingress Image](./imgs/ingress.svg)
 
 First install [controller](https://kubernetes.github.io/ingress-nginx/deploy/).
 
